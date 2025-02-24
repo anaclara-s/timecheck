@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:timecheck/shared/constants.dart';
 import 'package:timecheck/shared/widgets/custom_appbar.dart';
 import 'package:timecheck/shared/widgets/custom_text_button.dart';
 import 'package:timecheck/shared/widgets/custom_text_form_field.dart';
@@ -10,7 +9,6 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundColorScaffold,
       appBar: CustomAppbarWidget(),
       body: Padding(
         padding: const EdgeInsets.only(
