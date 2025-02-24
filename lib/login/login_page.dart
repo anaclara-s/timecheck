@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:timecheck/shared/widgets/custom_text_button.dart';
 import 'package:timecheck/shared/widgets/custom_text_form_field.dart';
 
 class LoginPage extends StatelessWidget {
@@ -12,6 +13,10 @@ class LoginPage extends StatelessWidget {
         children: [
           CustomTextFormFieldWidget(),
           CustomTextFormFieldWidget(),
+          CustomTextButtonWidget(
+            onPressed: () {},
+            text: 'Login',
+          ),
         ],
       ),
     );
