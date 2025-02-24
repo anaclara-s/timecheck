@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:timecheck/shared/widgets/custom_text_form_field.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -8,7 +9,10 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey,
       body: Column(
-        children: [],
+        children: [
+          CustomTextFormFieldWidget(),
+          CustomTextFormFieldWidget(),
+        ],
       ),
     );
   }
