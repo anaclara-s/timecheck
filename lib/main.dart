@@ -7,9 +7,18 @@ void main() {
     MaterialApp(
       theme: ThemeData.light().copyWith(
         scaffoldBackgroundColor: kLigthBackgroundColorPages,
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+            backgroundColor: kStandardLightBackgroundColor,
+          ),
+        ),
       ),
       darkTheme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: kDarkBackgroundColorPages,
+        textButtonTheme: TextButtonThemeData(
+            style: TextButton.styleFrom(
+          backgroundColor: kStandardDarkBackgroundColor,
+        )),
       ),
       themeMode: ThemeMode.system,
       home: LoginPage(),

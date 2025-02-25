@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:timecheck/shared/constants.dart';
 
 class CustomTextFormFieldWidget extends StatefulWidget {
   final TextEditingController? controller;
@@ -22,14 +23,28 @@ class CustomTextFormFieldWidget extends StatefulWidget {
 class _CustomTextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      autofocus: true,
-      controller: widget.controller,
-      onChanged: widget.onChanged,
-      decoration: InputDecoration(
-        border: UnderlineInputBorder(),
-        labelText: widget.labelText,
-        hintText: widget.hintText,
+    return Padding(
+      padding: const EdgeInsets.only(top: 25),
+      child: TextFormField(
+        autofocus: true,
+        controller: widget.controller,
+        onChanged: widget.onChanged,
+        decoration: InputDecoration(
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30),
+            borderSide: BorderSide(color: kTextFormFieldEnabledBorderColor),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30),
+            borderSide: BorderSide(color: kTextFormFieldFocusedBorderColor),
+          ),
+          labelText: widget.labelText,
+          labelStyle: TextStyle(
+            color: Theme.of(context).textTheme.bodyLarge?.color,
+            fontSize: 20,
+          ),
+          hintText: widget.hintText,
+        ),
       ),
     );
   }
