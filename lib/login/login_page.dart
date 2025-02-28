@@ -1,9 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:timecheck/shared/widgets/custom_text_button.dart';
-import 'package:timecheck/shared/widgets/custom_text_form_field.dart';
+
+import '../services/auth_service.dart';
+import '../shared/widgets/custom_text_button.dart';
+import '../shared/widgets/custom_text_form_field.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  final TextEditingController _usuarioController = TextEditingController();
+  final TextEditingController _senhaController = TextEditingController();
+
+  Future<void> _makeLogin(BuildContext context) async {
+    final String usuario = _usuarioController.text;
+    final String senha = _senhaController.text;
+
+    final response = await AuthService.makeLogin(usuario, senha);
+
+    if (response['sucess']) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(response['mensage'])),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(response['mensage'])),
+      );
+    }
+  }
+
+  LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
