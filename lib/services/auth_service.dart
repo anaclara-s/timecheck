@@ -1,9 +1,13 @@
-import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:http/http.dart' as http;
+
 class AuthService {
-  //Api
-  static const String _baseUrl = 'http://localhost:3000';
+  //URL API
+  // static const String _baseUrl = 'http://localhost:3000';
+
+  //IP maquina
+  static const String _baseUrl = 'http://192.168.0.57:3000';
 
   //função para fazer login
   static Future<Map<String, dynamic>> makeLogin(
@@ -15,10 +19,14 @@ class AuthService {
         body: jsonEncode({'usuario': usuario, 'senha': senha}),
       );
 
-      final data = jsonDecode(response.body);
-      return data;
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        return data;
+      } else {
+        return {'sucess': false, 'mensage': 'Erro ao conectar ao servidor1'};
+      }
     } catch (e) {
-      return {'sucess': false, 'mensage': 'Erro ao conectar ao servidor'};
+      return {'sucess': false, 'mensage': 'Erro ao conectar ao servidor2'};
     }
   }
 }

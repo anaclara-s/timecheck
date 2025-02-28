@@ -1,31 +1,55 @@
 import 'package:flutter/material.dart';
 
+import '../home/home_page.dart';
 import '../services/auth_service.dart';
 import '../shared/widgets/custom_text_button.dart';
 import '../shared/widgets/custom_text_form_field.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
   final TextEditingController _usuarioController = TextEditingController();
   final TextEditingController _senhaController = TextEditingController();
+  bool _isLoading = false;
 
   Future<void> _makeLogin(BuildContext context) async {
-    final String usuario = _usuarioController.text;
-    final String senha = _senhaController.text;
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+        _isLoading = true;
+      });
 
-    final response = await AuthService.makeLogin(usuario, senha);
+      final String usuario = _usuarioController.text;
+      final String senha = _senhaController.text;
 
-    if (response['sucess']) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(response['mensage'])),
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(response['mensage'])),
-      );
+      final response = await AuthService.makeLogin(usuario, senha);
+
+      setState(() {
+        _isLoading = false;
+      });
+
+      if (response != null && response['sucess'] == true) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(response['mensage'])),
+        );
+
+        //login bem-sucedido
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(response?['mensage'] ?? 'Erro desconhecido')),
+        );
+      }
     }
   }
-
-  LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,36 +59,44 @@ class LoginPage extends StatelessWidget {
           left: 15,
           right: 15,
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              width: 270,
-              height: 270,
-              decoration: BoxDecoration(
-                //color: const Color.fromARGB(66, 179, 183, 230),
-                shape: BoxShape.circle,
-              ),
-              child: Center(
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
                 child: Image.asset(
                   "assets/images/timecheck_logo.png",
-                  // width: 200,
-                  // height: 200,
                   fit: BoxFit.cover,
                 ),
               ),
-            ),
-            CustomTextFormFieldWidget(
-              labelText: 'Usuário',
-            ),
-            CustomTextFormFieldWidget(
-              labelText: 'Senha',
-            ),
-            CustomTextButtonWidget(
-              onPressed: () {},
-              text: 'Login',
-            ),
-          ],
+              CustomTextFormFieldWidget(
+                labelText: 'Usuário',
+                controller: _usuarioController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Por favor, insira o usuário';
+                  }
+                  return null;
+                },
+              ),
+              CustomTextFormFieldWidget(
+                labelText: 'Senha',
+                controller: _senhaController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Por favor, insira a senha';
+                  }
+                  return null;
+                },
+              ),
+              CustomTextButtonWidget(
+                text: 'Login',
+                onPressed: () => _makeLogin(context),
+                isLoading: _isLoading,
+              ),
+            ],
+          ),
         ),
       ),
     );

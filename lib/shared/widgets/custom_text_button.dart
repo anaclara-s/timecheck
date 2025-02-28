@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:timecheck/shared/constants.dart';
+
+import '../constants.dart';
 
 class CustomTextButtonWidget extends StatelessWidget {
   final VoidCallback onPressed;
   final String text;
+  final bool isLoading;
 
   const CustomTextButtonWidget({
     super.key,
     required this.onPressed,
     required this.text,
+    this.isLoading = false,
   });
 
   @override
@@ -19,14 +22,16 @@ class CustomTextButtonWidget extends StatelessWidget {
         width: 220,
         height: 60,
         child: TextButton(
-          onPressed: onPressed,
-          child: Text(
-            text,
-            style: TextStyle(
-              color: kLigthTextColors,
-              fontSize: kSizeTexts,
-            ),
-          ),
+          onPressed: isLoading ? null : onPressed,
+          child: isLoading
+              ? CircularProgressIndicator()
+              : Text(
+                  text,
+                  style: TextStyle(
+                    color: kLigthTextColors,
+                    fontSize: kSizeTexts,
+                  ),
+                ),
         ),
       ),
     );
