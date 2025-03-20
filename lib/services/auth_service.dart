@@ -19,14 +19,20 @@ class AuthService {
         body: jsonEncode({'usuario': usuario, 'senha': senha}),
       );
 
+      final data = jsonDecode(response.body);
+
       if (response.statusCode == 200) {
-        final data = jsonDecode(response.body);
         return data;
-      } else {
-        return {'sucess': false, 'mensage': 'Erro ao conectar ao servidor1'};
+      }
+      // Retorna a mensagem de erro da API
+      else {
+        return {
+          'sucess': false,
+          'mensage': data['mensage'] ?? 'Erro desconhecido'
+        };
       }
     } catch (e) {
-      return {'sucess': false, 'mensage': 'Erro ao conectar ao servidor2'};
+      return {'sucess': false, 'mensage': 'Erro ao conectar ao servidor'};
     }
   }
 }

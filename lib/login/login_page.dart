@@ -33,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
         _isLoading = false;
       });
 
-      if (response != null && response['sucess'] == true) {
+      if (response['sucess'] == true) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(response['mensage'])),
         );
@@ -45,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
         );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(response?['mensage'] ?? 'Erro desconhecido')),
+          SnackBar(content: Text(response['mensage'] ?? 'Erro desconhecido')),
         );
       }
     }
