@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:timecheck/shared/widgets/custom_bottom_navigator_bar.dart';
-import 'package:timecheck/shared/widgets/custom_text_button.dart';
 
+import '../shared/widgets/clock_widget.dart';
+import '../shared/widgets/greeting_widget.dart';
 import '../shared/widgets/custom_appbar.dart';
+import '../shared/widgets/custom_bottom_navigator_bar.dart';
+import '../shared/widgets/custom_text_button.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  final String userName;
+
+  const HomePage({
+    super.key,
+    required this.userName,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,10 +20,8 @@ class HomePage extends StatelessWidget {
         appBar: CustomAppbarWidget(),
         body: Column(
           children: [
-            Text('Bom dia/Boa tarde/Boa noite'),
-            Text('Nome do usuário'),
-            Text('relogio'),
-            Text('data'),
+            GreetingWidget(userName: userName),
+            ClockWidget(),
             CustomTextButtonWidget(onPressed: () {}, text: 'Marcar ponto'),
             Text('Últimas marcações'),
             Text('Horarios das ultimas marcações'),
