@@ -11,12 +11,12 @@ class AuthService {
 
   //função para fazer login
   static Future<Map<String, dynamic>> makeLogin(
-      String usuario, String senha) async {
+      String user, String password) async {
     try {
       final response = await http.post(
         Uri.parse('$_baseUrl/login'),
         headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({'usuario': usuario, 'senha': senha}),
+        body: jsonEncode({'usuario': user, 'senha': password}),
       );
 
       final data = jsonDecode(response.body);

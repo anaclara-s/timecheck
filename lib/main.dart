@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:timecheck/login/login_page.dart';
-import 'package:timecheck/shared/constants.dart';
+
+import 'login/login_page.dart';
+import 'shared/constants.dart';
 
 void main() {
   runApp(

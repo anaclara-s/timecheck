@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../shared/widgets/clock_widget.dart';
-import '../shared/widgets/greeting_widget.dart';
+import 'widget/clock_widget.dart';
+import 'widget/greeting_widget.dart';
 import '../shared/widgets/custom_appbar.dart';
 import '../shared/widgets/custom_bottom_navigator_bar.dart';
 import '../shared/widgets/custom_text_button.dart';

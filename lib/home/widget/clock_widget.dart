@@ -11,7 +11,7 @@ class ClockWidget extends StatelessWidget {
         builder: (context, snapshot) {
           final now = DateTime.now();
           final formattedTime = DateFormat('HH:mm:ss').format(now);
-          final formatterDate = DateFormat('dd/mm/yyyy').format(now);
+          final formatterDate = DateFormat('dd/MM/yyyy').format(now);
 
           return Column(
             children: [
