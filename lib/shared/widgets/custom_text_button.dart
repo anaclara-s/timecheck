@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../constants.dart';
 
-class CustomTextButtonWidget extends StatelessWidget {
+class CustomTextButtonWidget extends StatefulWidget {
   final VoidCallback onPressed;
   final String text;
   final bool isLoading;
@@ -15,18 +15,28 @@ class CustomTextButtonWidget extends StatelessWidget {
   });
 
   @override
+  State<CustomTextButtonWidget> createState() => _CustomTextButtonWidgetState();
+}
+
+class _CustomTextButtonWidgetState extends State<CustomTextButtonWidget> {
+  @override
   Widget build(BuildContext context) {
+    print('texto do botão recebido: ${widget.text}');
     return Padding(
       padding: EdgeInsets.only(top: 40),
       child: SizedBox(
-        width: 220,
+        width: 250,
         height: 60,
         child: TextButton(
-          onPressed: isLoading ? null : onPressed,
-          child: isLoading
-              ? CircularProgressIndicator()
+          onPressed: widget.isLoading ? null : widget.onPressed,
+          child: widget.isLoading
+              ? const SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: CircularProgressIndicator(),
+                )
               : Text(
-                  text,
+                  widget.text,
                   style: TextStyle(
                     color: kLigthTextColors,
                     fontSize: kSizeTexts,

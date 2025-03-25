@@ -27,7 +27,10 @@ class LoginController {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => HomePage(userName: response['nome']),
+            builder: (context) => HomePage(
+              userName: response['nome'],
+              idFuncionario: response['id_funcionario'],
+            ),
           ),
         );
       } else {
