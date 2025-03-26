@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
+import '../constants/constants.dart';
 
 class CustomTextButtonWidget extends StatefulWidget {
   final VoidCallback onPressed;
   final String text;
   final bool isLoading;
+  final bool isEnabled;
 
   const CustomTextButtonWidget({
     super.key,
     required this.onPressed,
     required this.text,
     this.isLoading = false,
+    this.isEnabled = true,
   });
 
   @override
@@ -21,7 +23,6 @@ class CustomTextButtonWidget extends StatefulWidget {
 class _CustomTextButtonWidgetState extends State<CustomTextButtonWidget> {
   @override
   Widget build(BuildContext context) {
-    print('texto do botão recebido: ${widget.text}');
     return Padding(
       padding: EdgeInsets.only(top: 40),
       child: SizedBox(

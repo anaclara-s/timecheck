@@ -11,7 +11,7 @@ class HomePage extends StatefulWidget {
   final String userName;
   final int employeeId;
 
-  HomePage({
+  const HomePage({
     super.key,
     required this.userName,
     required this.employeeId,
@@ -67,9 +67,8 @@ class HomePageView extends StatelessWidget {
               itemBuilder: (context, index) {
                 final record = state.recentRecords[index];
                 return ListTile(
-                  title: Text('${record['data']} ${record['horario']}'),
-                  subtitle:
-                      Text(state.formatRecordType(record['tipo_registro'])),
+                  title: Text('${record.date} - ${record.time}'),
+                  subtitle: Text(state.formatRecordType(record.recordType)),
                 );
               },
             ),

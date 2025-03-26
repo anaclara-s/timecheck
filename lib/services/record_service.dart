@@ -1,10 +1,11 @@
-import 'package:intl/intl.dart';
-
+import '../shared/constants/record_types.dart';
+import '../shared/extencions/format_date_extension.dart';
+import '../shared/models/time_record.dart';
 import 'api_service.dart';
 
 class RecordService {
   final int employeeId;
-  final Function(List<dynamic>) onRecordsUpdated;
+  final Function(List<TimeRecordModel>) onRecordsUpdated;
 
   RecordService({
     required this.employeeId,
@@ -14,41 +15,38 @@ class RecordService {
   Future<void> loadRecentRecords() async {
     try {
       final records = await ApiService.getRecords(employeeId);
-      onRecordsUpdated(records);
+      onRecordsUpdated(records.map(TimeRecordModel.fromJson).toList());
     } catch (e) {
       rethrow;
     }
   }
 
-  String determineNextRecordType(List<dynamic> records) {
-    final today = DateFormat('yyyy-MM-dd').format(DateTime.now());
-    final todayRecords = records.where((r) {
-      final dateRecord = r['data']?.toString().split(' ')[0] ?? '';
-      return dateRecord == today;
-    }).toList()
-      ..sort((a, b) => (b['horario'] ?? '').compareTo(a['horario'] ?? ''));
+  String determineNextRecordType(List<TimeRecordModel> records) {
+    final today = DateTime.now().toDateString();
+    final todayRecords = records.where((r) => r.date == today).toList()
+      ..sort((a, b) => b.time.compareTo(a.time));
 
-    // Verifica se já tem uma saída final hoje
-    final temSaidaFinal =
-        todayRecords.any((r) => r['tipo_registro'] == 'saida_final');
-    if (temSaidaFinal) {
-      return 'completed'; // Estado especial
-    }
+    // Verifica se tem uma saida_final no dia
+    final hasCompleted = todayRecords.any((r) =>
+        r.recordType ==
+        RecordTypeConstant.toBackend[RecordTypeConstant.checkOut]);
+    if (hasCompleted) return RecordTypeConstant.completed;
 
-    if (todayRecords.isEmpty) return 'check_in';
+    if (todayRecords.isEmpty) return RecordTypeConstant.checkIn;
 
-    final ultimo = todayRecords.first;
-    switch (ultimo['tipo_registro']?.toString() ?? '') {
+    final last = todayRecords.first;
+
+    switch (last.recordType) {
       case 'entrada':
-        return 'start_break';
+        return RecordTypeConstant.startBreak;
       case 'saida_intervalo':
-        return 'end_break';
+        return RecordTypeConstant.endBreak;
       case 'volta_intervalo':
-        return 'check_out';
+        return RecordTypeConstant.checkOut;
       case 'saida_final':
-        return 'completed'; // Já finalizou hoje
+        return RecordTypeConstant.completed;
       default:
-        return 'check_in';
+        return RecordTypeConstant.checkIn;
     }
   }
 

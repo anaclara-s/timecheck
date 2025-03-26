@@ -1,68 +1,68 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+import '../shared/constants/record_types.dart';
+
 class ApiService {
   static const String _baseUrl = 'http://192.168.0.57:3000';
+  static const Duration _timeout = Duration(seconds: 10);
 
-  // Função para obter registros
-  static Future<List<dynamic>> getRecords(int employeeId) async {
+  static Future<List<Map<String, dynamic>>> getRecords(int employeeId) async {
     try {
       final response = await http
           .get(
             Uri.parse('$_baseUrl/registros/$employeeId'),
           )
-          .timeout(Duration(seconds: 10));
+          .timeout(_timeout);
 
-      print('Resposta da API: ${response.statusCode} - ${response.body}');
+      _validateResponse(response);
 
-      if (response.statusCode == 200) {
-        final data = jsonDecode(response.body);
-        if (data['sucess'] == true) {
-          return data['registros'] ?? [];
-        }
-        throw Exception('Resposta inválida da API: ${data['mensage']}');
+      final data = jsonDecode(response.body);
+      if (data['sucess'] != true) {
+        throw ApiException(data['mensage'] ?? 'Invalid API response');
       }
-      throw Exception('Erro HTTP ${response.statusCode}');
+
+      return List<Map<String, dynamic>>.from(data['registros'] ?? []);
     } catch (e) {
-      print('Erro no getRecords: $e');
-      throw Exception('Falha ao carregar registros. Tente novamente.');
+      throw ApiException('Failed to load records: ${e.toString()}');
     }
   }
 
   static Future<void> recordTime(int employeeId, String recordType) async {
     try {
-      final Map<String, String> typeMapping = {
-        'check_in': 'entrada',
-        'start_break': 'saida_intervalo',
-        'end_break': 'volta_intervalo',
-        'check_out': 'saida_final',
-      };
-
-      final backendType = typeMapping[recordType] ?? 'entrada';
-
-      print(
-          'Sending to backend - recordType: $recordType, backendType: $backendType');
-
       final response = await http
           .post(
             Uri.parse('$_baseUrl/registrar-ponto'),
             headers: {'Content-Type': 'application/json'},
             body: jsonEncode({
               'id_funcionario': employeeId,
-              'tipo_registro': backendType,
+              'tipo_registro': RecordTypeConstant.getBackendType(recordType),
             }),
           )
-          .timeout(const Duration(seconds: 10));
+          .timeout(_timeout);
 
+      _validateResponse(response);
       final responseBody = jsonDecode(response.body);
-      print('Backend response: $responseBody');
 
-      if (response.statusCode != 200 || responseBody['sucess'] != true) {
-        throw Exception(responseBody['mensage'] ?? 'Failed to record time');
+      if (responseBody['sucess'] != true) {
+        throw ApiException(responseBody['mensage'] ?? 'Failed to record time');
       }
     } catch (e) {
-      print('Error in recordTime: $e');
-      rethrow;
+      throw ApiException('Failed to record time: ${e.toString()}');
     }
   }
+
+  static void _validateResponse(http.Response response) {
+    if (response.statusCode != 200) {
+      throw ApiException('HTTP Error ${response.statusCode}');
+    }
+  }
+}
+
+class ApiException implements Exception {
+  final String message;
+  ApiException(this.message);
+
+  @override
+  String toString() => message;
 }

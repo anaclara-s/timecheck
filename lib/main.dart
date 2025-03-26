@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'login/login_page.dart';
-import 'shared/constants.dart';
+import 'shared/constants/constants.dart';
 
 void main() {
   runApp(

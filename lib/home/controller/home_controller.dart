@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import '../../services/record_service.dart';
+import '../../shared/constants/record_types.dart';
+import '../../shared/extencions/format_date_extension.dart';
+import '../../shared/models/time_record.dart';
 import '../home_page.dart';
 
 class HomeController extends State<HomePage> {
-  String nextRecordType = 'check_in';
+  String nextRecordType = RecordTypeConstant.checkIn;
   bool isLoading = false;
-  List<dynamic> recentRecords = [];
+  List<TimeRecordModel> recentRecords = [];
   late final RecordService recordService;
 
   @override
@@ -24,7 +26,7 @@ class HomeController extends State<HomePage> {
     await recordService.loadRecentRecords();
   }
 
-  void _onRecordsUpdated(List<dynamic> records) {
+  void _onRecordsUpdated(List<TimeRecordModel> records) {
     if (!mounted) return;
 
     setState(() {
@@ -34,18 +36,15 @@ class HomeController extends State<HomePage> {
   }
 
   Future<void> recordTime() async {
-    final today = DateFormat('yyyy-MM-dd').format(DateTime.now());
-    final todayRecords = recentRecords.where((r) {
-      final dateRecord = r['data']?.toString().split(' ')[0] ?? '';
-      return dateRecord == today;
-    }).toList();
+    final today = DateTime.now().toDateString();
+    final isDayComplete = recentRecords.any((r) =>
+        r.date == today &&
+        r.recordType ==
+            RecordTypeConstant.toBackend[RecordTypeConstant.checkOut]);
 
-    final dayComplete =
-        todayRecords.any((r) => r['tipo_registro'] == 'saida_final');
-
-    if (dayComplete) {
+    if (isDayComplete) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Jornada já finalizada hoje')),
+        const SnackBar(content: Text('Jornada já finalizada hoje')),
       );
       return;
     }
@@ -65,38 +64,10 @@ class HomeController extends State<HomePage> {
     }
   }
 
-  String get buttonText {
-    if (nextRecordType == 'Completed') {
-      return 'Jornada finalizada';
-    }
-
-    switch (nextRecordType) {
-      case 'check_in':
-        return 'Registrar entrada';
-      case 'start_break':
-        return 'Registrar saída intervalo';
-      case 'end_break':
-        return 'Registrar volta intervalo';
-      case 'check_out':
-        return 'Registrar saída';
-      default:
-        return 'Marcar ponto';
-    }
-  }
+  String get buttonText => RecordTypeConstant.getDisplayText(nextRecordType);
 
   String formatRecordType(String type) {
-    switch (type.toLowerCase()) {
-      case 'check_in':
-        return 'Checked In';
-      case 'start_break':
-        return 'Started Break';
-      case 'end_break':
-        return 'Ended Break';
-      case 'check_out':
-        return 'Checked Out';
-      default:
-        return type;
-    }
+    return RecordTypeConstant.typeDisplayNames[type.toLowerCase()] ?? type;
   }
 
   @override
