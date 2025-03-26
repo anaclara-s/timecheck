@@ -5,11 +5,11 @@ class ApiService {
   static const String _baseUrl = 'http://192.168.0.57:3000';
 
   // Função para obter registros
-  static Future<List<dynamic>> getRegistros(int idFuncionario) async {
+  static Future<List<dynamic>> getRecords(int employeeId) async {
     try {
       final response = await http
           .get(
-            Uri.parse('$_baseUrl/registros/$idFuncionario'),
+            Uri.parse('$_baseUrl/registros/$employeeId'),
           )
           .timeout(Duration(seconds: 10));
 
@@ -24,27 +24,45 @@ class ApiService {
       }
       throw Exception('Erro HTTP ${response.statusCode}');
     } catch (e) {
-      print('Erro no getRegistros: $e');
+      print('Erro no getRecords: $e');
       throw Exception('Falha ao carregar registros. Tente novamente.');
     }
   }
 
-  // Função para registrar ponto (apenas uma declaração)
-  static Future<void> registrarPonto(
-    int idFuncionario,
-    String tipoRegistro,
-  ) async {
-    final response = await http.post(
-      Uri.parse('$_baseUrl/registrar-ponto'),
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode({
-        'id_funcionario': idFuncionario,
-        'tipo_registro': tipoRegistro,
-      }),
-    );
+  static Future<void> recordTime(int employeeId, String recordType) async {
+    try {
+      final Map<String, String> typeMapping = {
+        'check_in': 'entrada',
+        'start_break': 'saida_intervalo',
+        'end_break': 'volta_intervalo',
+        'check_out': 'saida_final',
+      };
 
-    if (response.statusCode != 200) {
-      throw Exception('Falha ao registrar ponto');
+      final backendType = typeMapping[recordType] ?? 'entrada';
+
+      print(
+          'Sending to backend - recordType: $recordType, backendType: $backendType');
+
+      final response = await http
+          .post(
+            Uri.parse('$_baseUrl/registrar-ponto'),
+            headers: {'Content-Type': 'application/json'},
+            body: jsonEncode({
+              'id_funcionario': employeeId,
+              'tipo_registro': backendType,
+            }),
+          )
+          .timeout(const Duration(seconds: 10));
+
+      final responseBody = jsonDecode(response.body);
+      print('Backend response: $responseBody');
+
+      if (response.statusCode != 200 || responseBody['sucess'] != true) {
+        throw Exception(responseBody['mensage'] ?? 'Failed to record time');
+      }
+    } catch (e) {
+      print('Error in recordTime: $e');
+      rethrow;
     }
   }
 }

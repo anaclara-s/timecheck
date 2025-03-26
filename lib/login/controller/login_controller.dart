@@ -29,7 +29,7 @@ class LoginController {
           MaterialPageRoute(
             builder: (context) => HomePage(
               userName: response['nome'],
-              idFuncionario: response['id_funcionario'],
+              employeeId: response['id_funcionario'],
             ),
           ),
         );
