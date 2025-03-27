@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 const kBackgroundColorAppBar = Color.fromARGB(255, 5, 35, 100);
 
+const kDarkHeaderContainerColor = Color.fromARGB(255, 15, 47, 116);
+const kLightHeaderContainerColor = Color.fromARGB(255, 183, 206, 255);
+
 const kStandardDarkBackgroundColor = Color.fromARGB(255, 114, 146, 214);
 const kStandardLightBackgroundColor = Color.fromARGB(255, 2, 22, 66);
 

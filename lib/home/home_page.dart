@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:timecheck/shared/widgets/custom_header_container.dart';
 
 import '../shared/widgets/custom_appbar.dart';
 import '../shared/widgets/custom_bottom_navigator_bar.dart';
@@ -33,19 +34,11 @@ class HomePageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppbarWidget(
-        text: 'Time Clock',
+        text: 'Marcações de ponto',
       ),
       body: Column(
         children: [
-          Container(
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: Color.fromARGB(255, 80, 184, 216),
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(200),
-                bottomRight: Radius.circular(200),
-              ),
-            ),
+          CustomHeaderContainerWidget(
             child: Column(
               children: [
                 GreetingWidget(userName: state.widget.userName),
