@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class TimeRecordModel {
   final int id;
   final int employeeId;
@@ -14,6 +16,11 @@ class TimeRecordModel {
     required this.recordType,
     this.location,
   });
+
+  String get formattedDate {
+    final dateTime = DateFormat('yyyy-MM-dd').parse(date);
+    return DateFormat('dd/MM/yyyy').format(dateTime);
+  }
 
   factory TimeRecordModel.fromJson(Map<String, dynamic> json) {
     return TimeRecordModel(

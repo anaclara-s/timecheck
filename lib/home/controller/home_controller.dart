@@ -35,6 +35,17 @@ class HomeController extends State<HomePage> {
     });
   }
 
+  List<TimeRecordModel> get lastFiveRecords {
+    final sortedList = recentRecords.toList();
+
+    sortedList.sort((a, b) {
+      final dateA = DateTime.parse('${a.date} ${a.time}');
+      final dateB = DateTime.parse('${b.date} ${b.time}');
+      return dateB.compareTo(dateA);
+    });
+    return sortedList.take(4).toList();
+  }
+
   Future<void> recordTime() async {
     final today = DateTime.now().toDateString();
     final isDayComplete = recentRecords.any((r) =>

@@ -63,11 +63,11 @@ class HomePageView extends StatelessWidget {
           Text('Últimas marcações'),
           Expanded(
             child: ListView.builder(
-              itemCount: state.recentRecords.length,
+              itemCount: state.lastFiveRecords.length,
               itemBuilder: (context, index) {
-                final record = state.recentRecords[index];
+                final record = state.lastFiveRecords[index];
                 return ListTile(
-                  title: Text('${record.date} - ${record.time}'),
+                  title: Text('${record.time} - ${record.formattedDate}'),
                   subtitle: Text(state.formatRecordType(record.recordType)),
                 );
               },
