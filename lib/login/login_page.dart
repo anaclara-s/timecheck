@@ -21,23 +21,27 @@ class _LoginPageState extends State<LoginPage> {
           left: 15,
           right: 15,
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Center(
-              child: Image.asset(
-                "assets/images/timecheck_logo.png",
-                fit: BoxFit.cover,
-              ),
+        child: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              // mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Center(
+                  child: Image.asset(
+                    "assets/images/timecheck_logo.png",
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                LoginFormWidget(
+                  formKey: _loginController.fromKey,
+                  userController: _loginController.userController,
+                  passwordController: _loginController.passwordController,
+                  onLoginPressd: () => _loginController.makeLogin(context),
+                  isLoading: _loginController.isLoading,
+                ),
+              ],
             ),
-            LoginFormWidget(
-              formKey: _loginController.fromKey,
-              userController: _loginController.userController,
-              passwordController: _loginController.passwordController,
-              onLoginPressd: () => _loginController.makeLogin(context),
-              isLoading: _loginController.isLoading,
-            ),
-          ],
+          ),
         ),
       ),
     );

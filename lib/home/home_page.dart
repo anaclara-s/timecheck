@@ -53,6 +53,7 @@ class HomePageView extends StatelessWidget {
             text: state.buttonText,
             isLoading: state.isLoading,
           ),
+          SizedBox(height: 40),
           Text('Últimas marcações'),
           Expanded(
             child: ListView.builder(

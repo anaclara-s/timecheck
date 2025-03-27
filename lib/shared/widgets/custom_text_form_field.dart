@@ -6,7 +6,8 @@ class CustomTextFormFieldWidget extends StatefulWidget {
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final void Function(String)? onChanged;
-//  final bool obscureText = false;
+  final bool obscureText;
+  final bool isPasswordField;
   final String? labelText;
   final String? hintText;
 
@@ -15,6 +16,8 @@ class CustomTextFormFieldWidget extends StatefulWidget {
     this.controller,
     this.validator,
     this.onChanged,
+    this.obscureText = false,
+    this.isPasswordField = false,
     this.labelText,
     this.hintText,
   });
@@ -25,6 +28,8 @@ class CustomTextFormFieldWidget extends StatefulWidget {
 }
 
 class _CustomTextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
+  bool _showPassaword = false;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -34,7 +39,8 @@ class _CustomTextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
         controller: widget.controller,
         validator: widget.validator,
         onChanged: widget.onChanged,
-        //      obscureText: widget.obscureText,
+        obscureText:
+            widget.isPasswordField ? !_showPassaword : widget.obscureText,
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),
@@ -50,6 +56,19 @@ class _CustomTextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
             fontSize: 20,
           ),
           hintText: widget.hintText,
+          suffixIcon: widget.isPasswordField
+              ? IconButton(
+                  icon: Icon(
+                    _showPassaword ? Icons.visibility : Icons.visibility_off,
+                    color: Theme.of(context).hintColor,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _showPassaword = !_showPassaword;
+                    });
+                  },
+                )
+              : null,
         ),
       ),
     );
