@@ -38,6 +38,7 @@ class LoginFormWidget extends StatelessWidget {
           CustomTextFormFieldWidget(
             labelText: 'Senha',
             controller: passwordController,
+            isPassword: true,
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Por favor, insira a senha';
