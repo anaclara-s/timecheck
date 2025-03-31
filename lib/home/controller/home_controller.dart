@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../services/record_service.dart';
-import '../../shared/constants/record_types.dart';
+import '../../core/services/record_service.dart';
+import '../../core/constants/record_types.dart';
 import '../../shared/extencions/format_date_extension.dart';
 import '../../shared/models/time_record.dart';
 import '../home_page.dart';

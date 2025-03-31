@@ -1,6 +1,6 @@
-import '../shared/constants/record_types.dart';
-import '../shared/extencions/format_date_extension.dart';
-import '../shared/models/time_record.dart';
+import '../constants/record_types.dart';
+import '../../shared/extencions/format_date_extension.dart';
+import '../../shared/models/time_record.dart';
 import 'api_service.dart';
 
 class RecordService {

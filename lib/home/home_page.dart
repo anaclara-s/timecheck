@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../shared/widgets/custom_appbar.dart';
-import '../shared/widgets/custom_bottom_navigator_bar.dart';
-import '../shared/widgets/custom_text_button.dart';
+import '../core/widgets/custom_appbar.dart';
+import '../core/widgets/custom_bottom_navigator_bar.dart';
+import '../core/widgets/custom_text_button.dart';
 import 'controller/home_controller.dart';
 import 'widget/clock_widget.dart';
 import 'widget/greeting_widget.dart';

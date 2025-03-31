@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-import '../shared/constants/record_types.dart';
+import '../constants/record_types.dart';
 
 class ApiService {
   static const String _baseUrl = 'http://192.168.0.57:3000';

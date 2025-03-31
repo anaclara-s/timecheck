@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:timecheck/home/home_page.dart';
-import 'package:timecheck/services/auth_service.dart';
+import 'package:timecheck/core/services/auth_service.dart';
 
 class LoginController {
   final GlobalKey<FormState> fromKey = GlobalKey<FormState>();

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../shared/widgets/custom_text_button.dart';
-import '../../shared/widgets/custom_text_form_field.dart';
+import '../../core/widgets/custom_text_button.dart';
+import '../../core/widgets/custom_text_form_field.dart';
 
 class LoginFormWidget extends StatelessWidget {
   final GlobalKey<FormState> formKey;
