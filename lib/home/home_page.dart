@@ -34,51 +34,74 @@ class HomePageView extends StatelessWidget {
       appBar: CustomAppbarWidget(
         text: 'Time Clock',
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 80, 184, 216),
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(200),
-                  bottomRight: Radius.circular(200),
-                ),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: constraints.maxHeight,
               ),
               child: Column(
                 children: [
-                  GreetingWidget(userName: state.widget.userName),
-                  SizedBox(height: 50),
-                  ClockWidget(),
+                  Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 80, 184, 216),
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(200),
+                        bottomRight: Radius.circular(200),
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        SizedBox(height: 10),
+                        GreetingWidget(userName: state.widget.userName),
+                        SizedBox(height: 30),
+                        ClockWidget(),
+                        SizedBox(height: 30),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: CustomTextButtonWidget(
+                      key: ValueKey(state.nextRecordType),
+                      onPressed: state.recordTime,
+                      text: state.buttonText,
+                      isLoading: state.isLoading,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Últimas marcações',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ),
+                  SizedBox(
+                    height: constraints.maxHeight * 0.5,
+                    child: ListView.builder(
+                      itemCount: state.lastFiveRecords.length,
+                      itemBuilder: (context, index) {
+                        final record = state.lastFiveRecords[index];
+                        return Card(
+                          margin:
+                              EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+                          child: ListTile(
+                            title: Text(
+                                '${record.time} - ${record.formattedDate}'),
+                            subtitle:
+                                Text(state.formatRecordType(record.recordType)),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
                 ],
               ),
             ),
-            CustomTextButtonWidget(
-              key: ValueKey(state.nextRecordType),
-              onPressed: state.recordTime,
-              text: state.buttonText,
-              isLoading: state.isLoading,
-            ),
-            Text('Últimas marcações'),
-            ConstrainedBox(
-              constraints: BoxConstraints(
-                maxHeight: MediaQuery.of(context).size.height * 0.4,
-              ),
-              child: ListView.builder(
-                itemCount: state.lastFiveRecords.length,
-                itemBuilder: (context, index) {
-                  final record = state.lastFiveRecords[index];
-                  return ListTile(
-                    title: Text('${record.time} - ${record.formattedDate}'),
-                    subtitle: Text(state.formatRecordType(record.recordType)),
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
