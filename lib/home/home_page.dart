@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../core/widgets/custom_appbar.dart';
-import '../core/widgets/custom_bottom_navigator_bar.dart';
 import '../core/widgets/custom_text_button.dart';
 import 'controller/home_controller.dart';
 import 'widget/clock_widget.dart';
@@ -35,46 +34,51 @@ class HomePageView extends StatelessWidget {
       appBar: CustomAppbarWidget(
         text: 'Time Clock',
       ),
-      body: Column(
-        children: [
-          Container(
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: Color.fromARGB(255, 80, 184, 216),
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(200),
-                bottomRight: Radius.circular(200),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 80, 184, 216),
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(200),
+                  bottomRight: Radius.circular(200),
+                ),
+              ),
+              child: Column(
+                children: [
+                  GreetingWidget(userName: state.widget.userName),
+                  SizedBox(height: 50),
+                  ClockWidget(),
+                ],
               ),
             ),
-            child: Column(
-              children: [
-                GreetingWidget(userName: state.widget.userName),
-                SizedBox(height: 50),
-                ClockWidget(),
-              ],
+            CustomTextButtonWidget(
+              key: ValueKey(state.nextRecordType),
+              onPressed: state.recordTime,
+              text: state.buttonText,
+              isLoading: state.isLoading,
             ),
-          ),
-          CustomTextButtonWidget(
-            key: ValueKey(state.nextRecordType),
-            onPressed: state.recordTime,
-            text: state.buttonText,
-            isLoading: state.isLoading,
-          ),
-          Text('Últimas marcações'),
-          Expanded(
-            child: ListView.builder(
-              itemCount: state.lastFiveRecords.length,
-              itemBuilder: (context, index) {
-                final record = state.lastFiveRecords[index];
-                return ListTile(
-                  title: Text('${record.time} - ${record.formattedDate}'),
-                  subtitle: Text(state.formatRecordType(record.recordType)),
-                );
-              },
+            Text('Últimas marcações'),
+            ConstrainedBox(
+              constraints: BoxConstraints(
+                maxHeight: MediaQuery.of(context).size.height * 0.4,
+              ),
+              child: ListView.builder(
+                itemCount: state.lastFiveRecords.length,
+                itemBuilder: (context, index) {
+                  final record = state.lastFiveRecords[index];
+                  return ListTile(
+                    title: Text('${record.time} - ${record.formattedDate}'),
+                    subtitle: Text(state.formatRecordType(record.recordType)),
+                  );
+                },
+              ),
             ),
-          ),
-          CustomBottomNavigatorBarWidget(),
-        ],
+          ],
+        ),
       ),
     );
   }

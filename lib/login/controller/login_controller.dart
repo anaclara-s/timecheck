@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:timecheck/home/home_page.dart';
-import 'package:timecheck/core/services/auth_service.dart';
+
+import '../../core/services/auth_service.dart';
+import '../../pages/navigation_bar_page.dart';
 
 class LoginController {
   final GlobalKey<FormState> fromKey = GlobalKey<FormState>();
@@ -27,7 +28,7 @@ class LoginController {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => HomePage(
+            builder: (context) => NavigationBarPage(
               userName: response['nome'],
               employeeId: response['id_funcionario'],
             ),
