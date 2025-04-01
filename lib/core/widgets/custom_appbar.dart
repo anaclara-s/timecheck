@@ -5,9 +5,12 @@ import '../constants/constants.dart';
 class CustomAppbarWidget extends StatelessWidget
     implements PreferredSizeWidget {
   final String text;
+  final List<Widget>? actions;
+
   const CustomAppbarWidget({
     super.key,
     required this.text,
+    this.actions,
   });
 
   @override
@@ -22,6 +25,7 @@ class CustomAppbarWidget extends StatelessWidget
           fontWeight: FontWeight.bold,
         ),
       ),
+      actions: actions,
       centerTitle: true,
     );
   }

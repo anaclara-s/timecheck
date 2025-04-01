@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../home/home_page.dart';
-import 'reports-page.dart';
+import 'reports_page.dart';
 import 'requests_page.dart';
 
 class NavigationBarPage extends StatefulWidget {
@@ -27,7 +27,7 @@ class _NavigatorBarState extends State<NavigationBarPage> {
   void initState() {
     super.initState();
     _pages = [
-      const ReportsPage(),
+      ReportsPage(employeeId: widget.employeeId),
       HomePage(
         userName: widget.userName,
         employeeId: widget.employeeId,
