@@ -1,4 +1,4 @@
-import '../../report/model/report_record_model.dart';
+import '../../shared/models/report_record_model.dart';
 import 'api_service.dart';
 
 class ReportsService {

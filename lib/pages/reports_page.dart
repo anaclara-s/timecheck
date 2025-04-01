@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:timecheck/core/widgets/custom_appbar.dart';
+
 import '../core/services/reports_service.dart';
-import '../report/model/report_record_model.dart';
+import '../core/widgets/custom_appbar.dart';
+import '../shared/models/report_record_model.dart';
 
 class ReportsPage extends StatefulWidget {
   final int employeeId;
