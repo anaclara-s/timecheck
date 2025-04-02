@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../home/home_page.dart';
-import 'reports_page.dart';
+import '../reports/reports_page.dart';
 import 'requests_page.dart';
 
 class NavigationBarPage extends StatefulWidget {
