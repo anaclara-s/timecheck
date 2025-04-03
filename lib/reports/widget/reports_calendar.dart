@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+import '../../shared/extencions/format_date_extension.dart';
+
 class ReportsCalendarWidget extends StatefulWidget {
   final DateTime? selectedDay;
   final Function(DateTime) onDaySelected;
@@ -62,6 +64,7 @@ class _ReportsCalendarWidgetState extends State<ReportsCalendarWidget> {
     return Card(
       margin: const EdgeInsets.all(8),
       child: TableCalendar(
+        locale: 'pt_BR',
         firstDay: _firstDay,
         lastDay: _lastDay,
         focusedDay: _focusedDay,
@@ -85,6 +88,14 @@ class _ReportsCalendarWidgetState extends State<ReportsCalendarWidget> {
           });
         },
         calendarBuilders: CalendarBuilders(
+          dowBuilder: (context, day) {
+            return Center(
+              child: Text(
+                day.toShortWeekday()[0],
+                style: TextStyle(color: const Color.fromARGB(255, 209, 3, 216)),
+              ),
+            );
+          },
           markerBuilder: (context, date, events) {
             if (widget.markedDates
                 .any((markedDate) => isSameDay(markedDate, date))) {
@@ -104,16 +115,23 @@ class _ReportsCalendarWidgetState extends State<ReportsCalendarWidget> {
             return null;
           },
         ),
+        availableCalendarFormats: const {
+          CalendarFormat.month: 'Mês',
+          CalendarFormat.twoWeeks: '2 Semanas',
+          CalendarFormat.week: 'Semana'
+        },
         headerStyle: HeaderStyle(
+          titleTextFormatter: (date, _) =>
+              date.toFullMonthNamesString() + ' ' + date.year.toString(),
           formatButtonVisible: true,
           titleCentered: true,
           formatButtonShowsNext: false,
           formatButtonDecoration: BoxDecoration(
-            // border: Border.all(color: const Color.fromARGB(255, 11, 64, 179)),
+            border: Border.all(color: const Color.fromARGB(255, 11, 64, 179)),
             borderRadius: BorderRadius.circular(8),
           ),
-          // formatButtonTextStyle:
-          //     const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+          formatButtonTextStyle:
+              TextStyle(color: const Color.fromARGB(255, 179, 21, 21)),
         ),
         calendarStyle: CalendarStyle(
           selectedDecoration: const BoxDecoration(

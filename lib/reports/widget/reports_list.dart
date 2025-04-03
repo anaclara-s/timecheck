@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
+import '../../shared/extencions/format_date_extension.dart';
 import '../../shared/models/report_record_model.dart';
 
 class ReportsListWidget extends StatelessWidget {
@@ -23,7 +23,7 @@ class ReportsListWidget extends StatelessWidget {
             Icon(Icons.hourglass_empty, size: 48, color: Colors.grey[400]),
             const SizedBox(height: 16),
             Text(
-              'Nenhum registro encontrado para ${DateFormat('dd/MM/yyyy').format(selectedDate)}',
+              'Nenhum registro encontrado para ${selectedDate.toDayMonthYearString()}',
               style: TextStyle(
                 fontSize: 18,
                 color: Colors.grey[600],
@@ -39,7 +39,7 @@ class ReportsListWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Text(
-            DateFormat('EEEE, d MMMM y', 'pt_BR').format(records.first.date),
+            '${records.first.date.toWeekdayNamesString()}, ${records.first.date.day} de ${records.first.date.toFullMonthNamesString()} de ${records.first.date.year}',
             style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
@@ -55,7 +55,7 @@ class ReportsListWidget extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 child: ListTile(
                   title: Text(record.formattedType),
-                  subtitle: Text(record.formattedDate),
+                  subtitle: Text(record.date.toDayMonthYearString()),
                   trailing: Text(
                     record.formattedTime,
                     style: TextStyle(fontSize: 18),
