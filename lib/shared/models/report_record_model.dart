@@ -1,12 +1,14 @@
 class ReportRecordModel {
   final int id;
   final DateTime date;
+  final String type;
   final DateTime time;
   final String recordType;
   final String? location;
   ReportRecordModel({
     required this.id,
     required this.date,
+    required this.type,
     required this.time,
     required this.recordType,
     this.location,
@@ -28,6 +30,7 @@ class ReportRecordModel {
       return ReportRecordModel(
         id: json['id'],
         date: date,
+        type: json['tipo'] ?? 'desconhecido',
         time: time,
         recordType: json['tipo_registro'],
         location: json['local'],

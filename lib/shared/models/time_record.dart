@@ -5,6 +5,7 @@ class TimeRecordModel {
   final int employeeId;
   final String time;
   final String date;
+  final String type;
   final String recordType;
   final String? location;
 
@@ -13,6 +14,7 @@ class TimeRecordModel {
     required this.employeeId,
     required this.time,
     required this.date,
+    required this.type,
     required this.recordType,
     this.location,
   });
@@ -28,6 +30,7 @@ class TimeRecordModel {
       employeeId: json['id_funcionario'] as int,
       time: json['horario'] as String,
       date: json['data'] as String,
+      type: json['tipo'] ?? 'desconhecido',
       recordType: json['tipo_registro'] as String,
       location: json['local'] as String?,
     );
