@@ -61,10 +61,12 @@ class _ReportsPageState extends State<ReportsPage> {
                 icon: const Icon(Icons.clear),
                 tooltip: 'Limpar filtro',
                 onPressed: _clearDateFilter,
+                color: Colors.white,
               ),
             IconButton(
               icon: Icon(Icons.refresh),
               onPressed: _loadRecords,
+              color: Colors.white,
             ),
           ],
         ),

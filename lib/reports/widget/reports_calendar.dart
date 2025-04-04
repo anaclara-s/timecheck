@@ -92,7 +92,10 @@ class _ReportsCalendarWidgetState extends State<ReportsCalendarWidget> {
             return Center(
               child: Text(
                 day.toShortWeekday()[0],
-                style: TextStyle(color: const Color.fromARGB(255, 209, 3, 216)),
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             );
           },
@@ -100,13 +103,13 @@ class _ReportsCalendarWidgetState extends State<ReportsCalendarWidget> {
             if (widget.markedDates
                 .any((markedDate) => isSameDay(markedDate, date))) {
               return Positioned(
-                right: 1,
+                top: 1,
                 bottom: 1,
                 child: Container(
-                  width: 8,
-                  height: 8,
+                  width: 30,
+                  height: 30,
                   decoration: const BoxDecoration(
-                    color: Color.fromARGB(73, 0, 255, 64),
+                    color: Color.fromARGB(72, 105, 185, 125),
                     shape: BoxShape.circle,
                   ),
                 ),
@@ -127,19 +130,20 @@ class _ReportsCalendarWidgetState extends State<ReportsCalendarWidget> {
           titleCentered: true,
           formatButtonShowsNext: false,
           formatButtonDecoration: BoxDecoration(
-            border: Border.all(color: const Color.fromARGB(255, 11, 64, 179)),
+            border: Border.all(
+              color: const Color.fromARGB(137, 11, 64, 179),
+              width: 2,
+            ),
             borderRadius: BorderRadius.circular(8),
           ),
-          formatButtonTextStyle:
-              TextStyle(color: const Color.fromARGB(255, 179, 21, 21)),
         ),
         calendarStyle: CalendarStyle(
           selectedDecoration: const BoxDecoration(
-            color: Color.fromARGB(255, 243, 110, 33),
+            color: Color.fromARGB(255, 0, 102, 255),
             shape: BoxShape.circle,
           ),
           todayDecoration: BoxDecoration(
-            color: Colors.blue.shade100,
+            color: const Color.fromARGB(141, 0, 140, 255),
             shape: BoxShape.circle,
           ),
         ),
