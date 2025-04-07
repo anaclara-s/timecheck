@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/services/auth_service.dart';
-import '../../pages/navigation_bar_page.dart';
+import '../../pages/navigator_bar/navigation_bar_page.dart';
 
 class LoginController {
   final GlobalKey<FormState> fromKey = GlobalKey<FormState>();

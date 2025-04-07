@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../home/home_page.dart';
-import '../reports/reports_page.dart';
-import 'requests_page.dart';
+import '../../home/home_page.dart';
+import '../../reports/reports_page.dart';
 
 class NavigationBarPage extends StatefulWidget {
   final String userName;
@@ -32,7 +31,6 @@ class _NavigatorBarState extends State<NavigationBarPage> {
         userName: widget.userName,
         employeeId: widget.employeeId,
       ),
-      const RequestsPage(),
     ];
   }
 
@@ -52,8 +50,6 @@ class _NavigatorBarState extends State<NavigationBarPage> {
               icon: Icon(Icons.watch_later_outlined), label: 'Relatório'),
           BottomNavigationBarItem(
               icon: Icon(Icons.home_filled), label: 'Início'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.waving_hand_rounded), label: 'Solicitações'),
         ],
         selectedItemColor: const Color.fromARGB(255, 255, 255, 255),
         unselectedItemColor: const Color.fromARGB(255, 60, 150, 177),
