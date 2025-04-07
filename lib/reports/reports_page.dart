@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:timecheck/core/services/reports_service.dart';
 
 import '../core/widgets/custom_appbar.dart';
 import 'controller/reports_controller.dart';
@@ -101,6 +102,7 @@ class _ReportsPageState extends State<ReportsPage> {
     return ReportsListWidget(
       records: _controller.filteredRecords,
       selectedDate: _currentSelectedDate,
+      reportsService: ReportsService(employeeId: widget.employeeId),
     );
   }
 }

@@ -5,6 +5,7 @@ class ReportRecordModel {
   final DateTime time;
   final String recordType;
   final String? location;
+  final int changesCount;
   ReportRecordModel({
     required this.id,
     required this.date,
@@ -12,6 +13,7 @@ class ReportRecordModel {
     required this.time,
     required this.recordType,
     this.location,
+    required this.changesCount,
   });
 
   factory ReportRecordModel.fromJson(Map<String, dynamic> json) {
@@ -34,6 +36,7 @@ class ReportRecordModel {
         time: time,
         recordType: json['tipo_registro'],
         location: json['local'],
+        changesCount: json['alteracoes'] ?? 0,
       );
     } catch (e) {
       throw FormatException('Failed to parse record: ${e.toString()}');
