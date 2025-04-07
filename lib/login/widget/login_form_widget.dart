@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../core/widgets/custom_text_button.dart';
+import '../../core/widgets/custom_elevated_button.dart';
 import '../../core/widgets/custom_text_form_field.dart';
 
 class LoginFormWidget extends StatelessWidget {
@@ -46,7 +46,7 @@ class LoginFormWidget extends StatelessWidget {
               return null;
             },
           ),
-          CustomTextButtonWidget(
+          CustomElevatedButtonWidget(
             onPressed: onLoginPressd,
             isLoading: isLoading,
             text: 'Login',

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../core/widgets/custom_appbar.dart';
-import '../core/widgets/custom_text_button.dart';
+import '../core/widgets/custom_elevated_button.dart';
 import 'controller/home_controller.dart';
 import 'widget/clock_widget.dart';
 import 'widget/greeting_widget.dart';
@@ -64,7 +64,7 @@ class HomePageView extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(15),
-                    child: CustomTextButtonWidget(
+                    child: CustomElevatedButtonWidget(
                       key: ValueKey(state.nextRecordType),
                       onPressed: state.recordTime,
                       text: state.buttonText,

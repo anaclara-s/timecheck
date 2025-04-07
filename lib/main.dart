@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
-import 'login/login_page.dart';
 import 'core/constants/constants.dart';
+import 'login/login_page.dart';
+import 'pages/register/register_page.dart';
+import 'pages/welcome/welcome_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,20 +13,28 @@ void main() async {
   Intl.defaultLocale = 'pt_BR';
   runApp(
     MaterialApp(
+      initialRoute: '/welcome',
+      routes: {
+        '/welcome': (context) => const WelcomePage(),
+        '/login': (context) => const LoginPage(),
+        '/register': (context) => const RegisterPage(),
+      },
       theme: ThemeData.light().copyWith(
         scaffoldBackgroundColor: kLigthBackgroundColorPages,
-        textButtonTheme: TextButtonThemeData(
-            style: TextButton.styleFrom(
-                backgroundColor: kStandardLightBackgroundColor)),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+                backgroundColor: kElevatedButtonLigthBackgroundColor,
+                foregroundColor: kElevatedForegroundLigthBackgroundColor)),
+        appBarTheme: AppBarTheme(iconTheme: IconThemeData(color: Colors.white)),
       ),
       darkTheme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: kDarkBackgroundColorPages,
-        textButtonTheme: TextButtonThemeData(
-            style: TextButton.styleFrom(
-                backgroundColor: kStandardDarkBackgroundColor)),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+                backgroundColor: kElevatedButtonDarkBackgroundColor,
+                foregroundColor: kElevatedForegroundDarkBackgroundColor)),
       ),
       themeMode: ThemeMode.system,
-      home: LoginPage(),
     ),
   );
 }
