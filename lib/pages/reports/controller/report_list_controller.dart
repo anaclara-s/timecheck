@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../core/services/api_service.dart';
-import '../../core/services/reports_service.dart';
-import '../../shared/models/report_record_model.dart';
+import '../../../core/services/api_service.dart';
+import '../../../core/services/reports_service.dart';
+import '../../../shared/models/report_record_model.dart';
 
 class ReportListController {
   final ReportsService reportsService;

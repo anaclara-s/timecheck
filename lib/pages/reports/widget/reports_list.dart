@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../shared/models/report_record_model.dart';
+import '../../../shared/models/report_record_model.dart';
 import '../controller/report_list_controller.dart';
 
 class ReportsListWidget extends StatelessWidget {

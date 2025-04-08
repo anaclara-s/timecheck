@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../core/services/reports_service.dart';
-import '../core/widgets/custom_appbar.dart';
+import '../../core/services/reports_service.dart';
+import '../../core/widgets/custom_appbar.dart';
 import 'controller/report_list_controller.dart';
 import 'controller/reports_controller.dart';
 import 'widget/reports_calendar.dart';
