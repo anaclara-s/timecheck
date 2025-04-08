@@ -3,7 +3,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
 import 'core/constants/constants.dart';
-import 'login/login_page.dart';
+import 'pages/login/login_page.dart';
 import 'pages/register/register_page.dart';
 import 'pages/welcome/welcome_page.dart';
 

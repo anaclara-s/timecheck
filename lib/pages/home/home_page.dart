@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../core/widgets/custom_appbar.dart';
-import '../core/widgets/custom_elevated_button.dart';
+import '../../core/widgets/custom_appbar.dart';
+import '../../core/widgets/custom_elevated_button.dart';
 import 'controller/home_controller.dart';
 import 'widget/clock_widget.dart';
 import 'widget/greeting_widget.dart';
