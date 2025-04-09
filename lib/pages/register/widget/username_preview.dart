@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class UsernamePreview extends StatelessWidget {
+class UsernamePreviewWidget extends StatelessWidget {
   final String username;
 
-  const UsernamePreview({super.key, required this.username});
+  const UsernamePreviewWidget({super.key, required this.username});
 
   @override
   Widget build(BuildContext context) {
@@ -12,17 +12,18 @@ class UsernamePreview extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        SizedBox(height: 5),
         const Text(
-          'Seu nome de usuário será:',
+          'Seu usuário será:',
           style: TextStyle(fontWeight: FontWeight.w500),
         ),
-        const SizedBox(height: 4),
         Container(
-          width: double.infinity,
+          margin: const EdgeInsets.symmetric(vertical: 12),
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: Color.fromARGB(255, 27, 63, 131),
+            color: Colors.blueGrey.shade900,
             borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: Colors.blueGrey.shade700),
           ),
           child: Text(
             username,

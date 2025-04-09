@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:timecheck/core/widgets/custom_elevated_button.dart';
 
 import '../../core/widgets/custom_appbar.dart';
 import '../../core/widgets/custom_text_form_field.dart';
 import 'controller/register_controller.dart';
 import 'widget/email_fields.dart';
+import 'widget/password_fields.dart';
 import 'widget/username_preview.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -22,13 +24,14 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
       appBar: CustomAppbarWidget(text: 'Cadastro'),
       body: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.fromLTRB(30, 50, 30, 20),
         child: Form(
           key: _formKey,
           child: ListView(
             children: [
               CustomTextFormFieldWidget(
                 controller: controller.nameController,
+                prefixIcon: Icon(Icons.person_outline_sharp),
                 hintText: 'Digite seu nome completo',
                 validator: (value) =>
                     value!.isEmpty ? 'Informe seu nome' : null,
@@ -38,10 +41,8 @@ class _RegisterPageState extends State<RegisterPage> {
                   });
                 },
               ),
-              const SizedBox(height: 12),
-              UsernamePreview(username: controller.generatedUsername),
-              const SizedBox(height: 16),
-              EmailFields(
+              UsernamePreviewWidget(username: controller.generatedUsername),
+              EmailFieldsWidget(
                 emailController: controller.emailController,
                 confirmEmailController: controller.confirmEmailController,
                 emailError: controller.emailError,
@@ -51,14 +52,17 @@ class _RegisterPageState extends State<RegisterPage> {
                   });
                 },
               ),
-              const SizedBox(height: 16),
-              CustomTextFormFieldWidget(
-                controller: controller.passwordController,
-                hintText: 'Crie sua senha',
-                isPassword: true,
+              PasswordFieldsWidget(
+                passwordController: controller.passwordController,
+                confirmPasswordController: controller.confirmPasswordController,
+                passwordError: controller.passwordError,
+                onChanged: () {
+                  setState(() {
+                    controller.validatePassword();
+                  });
+                },
               ),
-              const SizedBox(height: 20),
-              ElevatedButton(
+              CustomElevatedButtonWidget(
                 onPressed: controller.isLoading
                     ? null
                     : () => controller.handleRegister(
@@ -66,9 +70,8 @@ class _RegisterPageState extends State<RegisterPage> {
                           context: context,
                           onUpdate: () => setState(() {}),
                         ),
-                child: controller.isLoading
-                    ? const CircularProgressIndicator()
-                    : const Text('Cadastrar'),
+                text: 'Cadastrar',
+                isLoading: controller.isLoading,
               ),
             ],
           ),

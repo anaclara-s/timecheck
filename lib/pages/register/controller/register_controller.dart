@@ -6,10 +6,12 @@ class RegisterController {
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final confirmEmailController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
   final passwordController = TextEditingController();
 
   String generatedUsername = '';
   String? emailError;
+  String? passwordError;
   bool isLoading = false;
 
   void generateUsername(String fullName) {
@@ -33,6 +35,19 @@ class RegisterController {
       emailError = 'Os e-mails não coincidem';
     } else {
       emailError = null;
+    }
+  }
+
+  void validatePassword() {
+    final password = passwordController.text.trim();
+    final confirm = confirmPasswordController.text.trim();
+
+    if (password.length < 4) {
+      passwordError = 'Senha precisa ter mais de 4 caracteres';
+    } else if (password != confirm) {
+      passwordError = 'As senhas não coincidem';
+    } else {
+      passwordError = null;
     }
   }
 

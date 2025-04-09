@@ -10,6 +10,9 @@ class CustomTextFormFieldWidget extends StatefulWidget {
   final bool isPassword;
   final String? labelText;
   final String? hintText;
+  final bool? filled;
+  final Color? fillColor;
+  final Widget? prefixIcon;
 
   const CustomTextFormFieldWidget({
     super.key,
@@ -20,6 +23,9 @@ class CustomTextFormFieldWidget extends StatefulWidget {
     this.isPassword = false,
     this.labelText,
     this.hintText,
+    this.filled,
+    this.fillColor,
+    this.prefixIcon,
   });
 
   @override
@@ -41,12 +47,15 @@ class _CustomTextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
         onChanged: widget.onChanged,
         obscureText: widget.isPassword ? !_showPassword : widget.obscureText,
         decoration: InputDecoration(
+          filled: widget.filled,
+          fillColor: widget.fillColor,
+          prefixIcon: widget.prefixIcon,
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(15),
             borderSide: BorderSide(color: kTextFormFieldEnabledBorderColor),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(20),
             borderSide: BorderSide(color: kTextFormFieldFocusedBorderColor),
           ),
           labelText: widget.labelText,

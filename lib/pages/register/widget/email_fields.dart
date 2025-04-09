@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import '../../../core/widgets/custom_text_form_field.dart';
 
-class EmailFields extends StatelessWidget {
+class EmailFieldsWidget extends StatelessWidget {
   final TextEditingController emailController;
   final TextEditingController confirmEmailController;
   final String? emailError;
   final VoidCallback onChanged;
 
-  const EmailFields({
+  const EmailFieldsWidget({
     super.key,
     required this.emailController,
     required this.confirmEmailController,
@@ -21,6 +21,7 @@ class EmailFields extends StatelessWidget {
       children: [
         CustomTextFormFieldWidget(
           controller: emailController,
+          prefixIcon: Icon(Icons.email_outlined),
           hintText: 'Digite seu email',
           validator: (value) => value!.isEmpty ? 'Informe seu email' : null,
           onChanged: (_) => onChanged(),
@@ -28,6 +29,7 @@ class EmailFields extends StatelessWidget {
         const SizedBox(height: 12),
         CustomTextFormFieldWidget(
           controller: confirmEmailController,
+          prefixIcon: Icon(Icons.email_outlined),
           hintText: 'Confirme seu email',
           onChanged: (_) => onChanged(),
         ),
