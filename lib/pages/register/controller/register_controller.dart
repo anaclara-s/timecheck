@@ -87,16 +87,33 @@ class RegisterController {
     isLoading = false;
     onUpdate();
 
-    if (response['sucess'] == true) {
-      final usuario = response['usuario'];
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Cadastro realizado! Usuário: $usuario')),
-      );
-      Navigator.pushReplacementNamed(context, '/login');
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(response['mensage'] ?? 'Erro no cadastro')),
-      );
-    }
+    await showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: const Text('Cadastro realizado!'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Nome de usuário: $generatedUsername'),
+            Text('Senha: ${passwordController.text.trim()}'),
+            const SizedBox(height: 10),
+            const Text(
+              'Guarde essas informações com segurança.',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              Navigator.pushReplacementNamed(context, '/login');
+            },
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
   }
 }
