@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:timecheck/core/widgets/custom_elevated_button.dart';
 
 import '../../core/widgets/custom_appbar.dart';
+import '../../core/widgets/custom_elevated_button.dart';
 import '../../core/widgets/custom_text_form_field.dart';
 import 'controller/register_controller.dart';
 import 'widget/email_fields.dart';

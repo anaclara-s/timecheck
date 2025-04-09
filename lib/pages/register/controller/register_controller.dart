@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../core/services/auth_service.dart';
 
@@ -90,17 +91,44 @@ class RegisterController {
     await showDialog(
       context: context,
       builder: (_) => AlertDialog(
-        title: const Text('Cadastro realizado!'),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        title: const Text(
+          'Cadastro realizado',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text('Nome de usuário: $generatedUsername'),
-            Text('Senha: ${passwordController.text.trim()}'),
-            const SizedBox(height: 10),
-            const Text(
-              'Guarde essas informações com segurança.',
-              style: TextStyle(fontWeight: FontWeight.bold),
+            Text(
+              'Nome de usuário: $generatedUsername',
+              style: TextStyle(fontSize: 18),
+            ),
+            Text(
+              'Senha: ${passwordController.text.trim()}',
+              style: TextStyle(fontSize: 18),
+            ),
+            const SizedBox(height: 12),
+            ElevatedButton.icon(
+              onPressed: () {
+                final data =
+                    'Usuário: $generatedUsername\nSenha: ${passwordController.text.trim()}';
+                Clipboard.setData(ClipboardData(text: data));
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Credenciais copiadas!')),
+                );
+              },
+              icon: const Icon(Icons.copy),
+              label: const Text('Copiar credenciais'),
+            ),
+            const SizedBox(height: 12),
+            Text(
+              'Não compartilhe suas credenciais',
+              style: TextStyle(
+                color: Colors.redAccent,
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
             ),
           ],
         ),
