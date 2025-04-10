@@ -3,11 +3,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class AuthService {
-  //URL API
-  // static const String _baseUrl = 'http://localhost:3000';
-
-  //IP maquina
-  static const String _baseUrl = 'http://192.168.0.57:3000';
+  //URL API render
+  static const String _baseUrl = 'https://api-timecheck-i1lv.onrender.com';
 
   //função para login
   static Future<Map<String, dynamic>> makeLogin(
@@ -32,6 +29,7 @@ class AuthService {
         };
       }
     } catch (e) {
+      print('Erro ao conectar ao servidor: $e');
       return {'sucess': false, 'mensage': 'Erro ao conectar ao servidor'};
     }
   }

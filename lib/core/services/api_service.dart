@@ -1,13 +1,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import '../constants/record_types.dart';
 
 class ApiService {
-  static const String _baseUrl = 'http://192.168.0.57:3000';
+  static const String _baseUrl = 'https://api-timecheck-i1lv.onrender.com';
   static const Duration _timeout = Duration(seconds: 10);
 
   static Future<List<Map<String, dynamic>>> getRecords(int employeeId) async {
@@ -33,6 +34,9 @@ class ApiService {
 
   static Future<void> recordTime(int employeeId, String recordType) async {
     try {
+      final now = DateTime.now();
+      final formattedTime =
+          '${now.hour.toString().padLeft(2, '0')}:${now.minute.toString().padLeft(2, '0')}:${now.second.toString().padLeft(2, '0')}';
       final response = await http
           .post(
             Uri.parse('$_baseUrl/registrar-ponto'),
@@ -40,6 +44,7 @@ class ApiService {
             body: jsonEncode({
               'id_funcionario': employeeId,
               'tipo_registro': RecordTypeConstant.getBackendType(recordType),
+              'horario': formattedTime,
             }),
           )
           .timeout(_timeout);
