@@ -20,6 +20,8 @@ class LoginController {
 
       isLoading = false;
 
+      if (!context.mounted) return;
+
       if (response['sucess'] == true) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(response['mensage'])),

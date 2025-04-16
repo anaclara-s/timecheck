@@ -22,7 +22,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppbarWidget(text: 'Cadastro'),
+      appBar: const CustomAppbarWidget(text: 'Cadastro'),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(30, 50, 30, 20),
         child: Form(
@@ -31,7 +31,7 @@ class _RegisterPageState extends State<RegisterPage> {
             children: [
               CustomTextFormFieldWidget(
                 controller: controller.nameController,
-                prefixIcon: Icon(Icons.person_outline_sharp),
+                prefixIcon: const Icon(Icons.person_outline_sharp),
                 hintText: 'Digite seu nome completo',
                 validator: (value) =>
                     value!.isEmpty ? 'Informe seu nome' : null,

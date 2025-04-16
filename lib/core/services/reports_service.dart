@@ -64,7 +64,7 @@ class ReportsService {
             try {
               return ReportRecordModel.fromJson(record);
             } catch (e) {
-              print('Error parsing record $record: $e');
+              // print('Error parsing record $record: $e');
               return null;
             }
           })
@@ -72,7 +72,7 @@ class ReportsService {
           .cast<ReportRecordModel>()
           .toList();
     } catch (e) {
-      print('Erro ao carregar registros: $e');
+      // print('Erro ao carregar registros: $e');
       throw Exception('Failed to load reports: ${e.toString()}');
     }
   }

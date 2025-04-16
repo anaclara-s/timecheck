@@ -26,13 +26,13 @@ class _CustomElevatedButtonWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 40),
+      padding: const EdgeInsets.only(top: 40),
       child: SizedBox(
         width: 250,
         height: 60,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            minimumSize: Size.fromHeight(50),
+            minimumSize: const Size.fromHeight(50),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),
@@ -46,7 +46,7 @@ class _CustomElevatedButtonWidgetState
                 )
               : Text(
                   widget.text,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: kLigthTextColors,
                     fontSize: kSizeTexts,
                   ),

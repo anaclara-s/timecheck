@@ -29,7 +29,7 @@ class AuthService {
         };
       }
     } catch (e) {
-      print('Erro ao conectar ao servidor: $e');
+      // print('Erro ao conectar ao servidor: $e');
       return {'sucess': false, 'mensage': 'Erro ao conectar ao servidor'};
     }
   }

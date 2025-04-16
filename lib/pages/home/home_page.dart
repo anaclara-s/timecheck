@@ -31,7 +31,7 @@ class HomePageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppbarWidget(
+      appBar: const CustomAppbarWidget(
         text: 'Time Clock',
       ),
       body: LayoutBuilder(
@@ -45,7 +45,7 @@ class HomePageView extends StatelessWidget {
                 children: [
                   Container(
                     width: double.infinity,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Color.fromARGB(255, 80, 184, 216),
                       borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(200),
@@ -54,11 +54,11 @@ class HomePageView extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         GreetingWidget(userName: state.widget.userName),
-                        SizedBox(height: 30),
-                        ClockWidget(),
-                        SizedBox(height: 30),
+                        const SizedBox(height: 30),
+                        const ClockWidget(),
+                        const SizedBox(height: 30),
                       ],
                     ),
                   ),
@@ -71,8 +71,8 @@ class HomePageView extends StatelessWidget {
                       isLoading: state.isLoading,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
                     child: Text(
                       'Últimas marcações',
                       style: TextStyle(fontSize: 18),
@@ -86,7 +86,7 @@ class HomePageView extends StatelessWidget {
                         final record = state.lastFiveRecords[index];
                         return Card(
                           margin:
-                              EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+                              const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
                           child: ListTile(
                             title: Text(
                                 '${record.time} - ${record.formattedDate}'),

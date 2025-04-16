@@ -52,11 +52,11 @@ class _CustomTextFormFieldWidgetState extends State<CustomTextFormFieldWidget> {
           prefixIcon: widget.prefixIcon,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
-            borderSide: BorderSide(color: kTextFormFieldEnabledBorderColor),
+            borderSide: const BorderSide(color: kTextFormFieldEnabledBorderColor),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20),
-            borderSide: BorderSide(color: kTextFormFieldFocusedBorderColor),
+            borderSide: const BorderSide(color: kTextFormFieldFocusedBorderColor),
           ),
           labelText: widget.labelText,
           labelStyle: TextStyle(

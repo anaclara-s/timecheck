@@ -21,7 +21,7 @@ class EmailFieldsWidget extends StatelessWidget {
       children: [
         CustomTextFormFieldWidget(
           controller: emailController,
-          prefixIcon: Icon(Icons.email_outlined),
+          prefixIcon: const Icon(Icons.email_outlined),
           hintText: 'Digite seu email',
           validator: (value) => value!.isEmpty ? 'Informe seu email' : null,
           onChanged: (_) => onChanged(),
@@ -29,7 +29,7 @@ class EmailFieldsWidget extends StatelessWidget {
         const SizedBox(height: 12),
         CustomTextFormFieldWidget(
           controller: confirmEmailController,
-          prefixIcon: Icon(Icons.email_outlined),
+          prefixIcon: const Icon(Icons.email_outlined),
           hintText: 'Confirme seu email',
           onChanged: (_) => onChanged(),
         ),

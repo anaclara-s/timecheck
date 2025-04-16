@@ -19,7 +19,7 @@ class CustomAppbarWidget extends StatelessWidget
       backgroundColor: kBackgroundColorAppBar,
       title: Text(
         text,
-        style: TextStyle(
+        style: const TextStyle(
           color: kLigthTextColors,
           fontSize: kSizeTexts,
           fontWeight: FontWeight.bold,

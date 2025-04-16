@@ -20,21 +20,26 @@ class ReportListController {
     }
 
     final confirm = await _showConfirmationDialog(context, record);
+    if (!context.mounted) return;
     if (confirm != true) return;
 
     final newTime = await showTimePicker(
       context: context,
       initialTime: TimeOfDay.fromDateTime(record.time),
     );
+    if (!context.mounted) return;
 
     if (newTime != null) {
       try {
         await reportsService.updateRecordTime(record.id, newTime);
+        if (!context.mounted) return;
 
         _showSnackBar(context, 'Horário atualizado com sucesso!', Colors.green);
 
         if (onSuccess != null) onSuccess(newTime);
       } on ApiException catch (e) {
+        if (!context.mounted) return;
+
         final isLimitError =
             e.message.contains('Limite de alterações atingido');
         _showSnackBar(
@@ -43,6 +48,7 @@ class ReportListController {
           isLimitError ? Colors.orange : Colors.red,
         );
       } catch (e) {
+        if (!context.mounted) return;
         _showSnackBar(context, 'Erro ao atualizar horário', Colors.red);
       }
     }

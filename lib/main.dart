@@ -25,7 +25,7 @@ void main() async {
             style: ElevatedButton.styleFrom(
                 backgroundColor: kElevatedButtonLigthBackgroundColor,
                 foregroundColor: kElevatedForegroundLigthBackgroundColor)),
-        appBarTheme: AppBarTheme(iconTheme: IconThemeData(color: Colors.white)),
+        appBarTheme: const AppBarTheme(iconTheme: IconThemeData(color: Colors.white)),
       ),
       darkTheme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: kDarkBackgroundColorPages,

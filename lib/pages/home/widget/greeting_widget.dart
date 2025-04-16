@@ -28,7 +28,7 @@ class GreetingWidget extends StatelessWidget {
         builder: (context, snapshot) {
           return Text(
             '${_getGreeting()}, $userName',
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),

@@ -12,7 +12,7 @@ class UsernamePreviewWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
         const Text(
           'Seu usuário será:',
           style: TextStyle(fontWeight: FontWeight.w500),

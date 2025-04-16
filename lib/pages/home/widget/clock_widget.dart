@@ -17,14 +17,14 @@ class ClockWidget extends StatelessWidget {
             children: [
               Text(
                 formattedTime,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 70,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Text(
                 formatterDate,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),

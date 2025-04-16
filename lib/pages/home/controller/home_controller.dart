@@ -65,9 +65,11 @@ class HomeController extends State<HomePage> {
       await recordService.recordTime(nextRecordType);
       await recordService.loadRecentRecords();
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Erro: ${e.toString()}')),
-      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Erro: ${e.toString()}')),
+        );
+      }
     } finally {
       if (mounted) {
         setState(() => isLoading = false);

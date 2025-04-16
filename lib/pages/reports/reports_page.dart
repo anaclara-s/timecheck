@@ -11,13 +11,13 @@ import 'widget/reports_list.dart';
 class ReportsPage extends StatefulWidget {
   final int employeeId;
 
-  const ReportsPage({Key? key, required this.employeeId}) : super(key: key);
+  const ReportsPage({super.key, required this.employeeId});
 
   @override
-  _ReportsPageState createState() => _ReportsPageState();
+  ReportsPageState createState() => ReportsPageState();
 }
 
-class _ReportsPageState extends State<ReportsPage> {
+class ReportsPageState extends State<ReportsPage> {
   late ReportsController _controller;
   late DateTime _currentSelectedDate;
 
@@ -66,7 +66,7 @@ class _ReportsPageState extends State<ReportsPage> {
                 color: Colors.white,
               ),
             IconButton(
-              icon: Icon(Icons.refresh),
+              icon: const Icon(Icons.refresh),
               onPressed: _loadRecords,
               color: Colors.white,
             ),
@@ -79,7 +79,7 @@ class _ReportsPageState extends State<ReportsPage> {
               onDaySelected: _onDaySelected,
               markedDates: _controller.getMarkedDates(),
             ),
-            Divider(height: 1),
+            const Divider(height: 1),
             Expanded(
               child: _buildBody(),
             ),

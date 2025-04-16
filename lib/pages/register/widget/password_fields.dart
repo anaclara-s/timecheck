@@ -22,7 +22,7 @@ class PasswordFieldsWidget extends StatelessWidget {
       children: [
         CustomTextFormFieldWidget(
           controller: passwordController,
-          prefixIcon: Icon(Icons.lock_outline),
+          prefixIcon: const Icon(Icons.lock_outline),
           hintText: 'Crie sua senha',
           validator: (value) => value!.isEmpty ? 'Informe sua senha' : null,
           onChanged: (_) => onChanged(),
@@ -31,7 +31,7 @@ class PasswordFieldsWidget extends StatelessWidget {
         const SizedBox(height: 12),
         CustomTextFormFieldWidget(
           controller: confirmPasswordController,
-          prefixIcon: Icon(Icons.lock_outline),
+          prefixIcon: const Icon(Icons.lock_outline),
           hintText: 'Confirme sua senha',
           onChanged: (_) => onChanged(),
           isPassword: true,

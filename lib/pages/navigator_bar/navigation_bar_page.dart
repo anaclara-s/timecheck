@@ -45,7 +45,7 @@ class _NavigatorBarState extends State<NavigationBarPage> {
             currentPageIndex = index;
           });
         },
-        items: [
+        items: const [
           BottomNavigationBarItem(
               icon: Icon(Icons.watch_later_outlined), label: 'Relatório'),
           BottomNavigationBarItem(

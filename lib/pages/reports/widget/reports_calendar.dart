@@ -10,17 +10,17 @@ class ReportsCalendarWidget extends StatefulWidget {
   final List<DateTime> markedDates;
 
   const ReportsCalendarWidget({
-    Key? key,
+    super.key,
     this.selectedDay,
     required this.onDaySelected,
     required this.markedDates,
-  }) : super(key: key);
+  });
 
   @override
-  _ReportsCalendarWidgetState createState() => _ReportsCalendarWidgetState();
+  ReportsCalendarWidgetState createState() => ReportsCalendarWidgetState();
 }
 
-class _ReportsCalendarWidgetState extends State<ReportsCalendarWidget> {
+class ReportsCalendarWidgetState extends State<ReportsCalendarWidget> {
   late DateTime _focusedDay;
   late DateTime _selectedDay;
   late CalendarFormat _calendarFormat;
@@ -92,7 +92,7 @@ class _ReportsCalendarWidgetState extends State<ReportsCalendarWidget> {
             return Center(
               child: Text(
                 day.toShortWeekday()[0],
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
                 ),
@@ -125,7 +125,7 @@ class _ReportsCalendarWidgetState extends State<ReportsCalendarWidget> {
         },
         headerStyle: HeaderStyle(
           titleTextFormatter: (date, _) =>
-              date.toFullMonthNamesString() + ' ' + date.year.toString(),
+              '${date.toFullMonthNamesString()} ${date.year}',
           formatButtonVisible: true,
           titleCentered: true,
           formatButtonShowsNext: false,
@@ -137,13 +137,13 @@ class _ReportsCalendarWidgetState extends State<ReportsCalendarWidget> {
             borderRadius: BorderRadius.circular(8),
           ),
         ),
-        calendarStyle: CalendarStyle(
-          selectedDecoration: const BoxDecoration(
+        calendarStyle: const CalendarStyle(
+          selectedDecoration: BoxDecoration(
             color: Color.fromARGB(255, 0, 102, 255),
             shape: BoxShape.circle,
           ),
           todayDecoration: BoxDecoration(
-            color: const Color.fromARGB(141, 0, 140, 255),
+            color: Color.fromARGB(141, 0, 140, 255),
             shape: BoxShape.circle,
           ),
         ),
