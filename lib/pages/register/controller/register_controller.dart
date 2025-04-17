@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-// import '../../../core/services/auth_service.dart';
+import '../../../core/services/auth_service.dart';
 
 class RegisterController {
   final nameController = TextEditingController();
@@ -77,13 +77,13 @@ class RegisterController {
     isLoading = true;
     onUpdate();
 
-    // final response = await AuthService.registerUser(
-    //   nameController.text.trim(),
-    //   emailController.text.trim(),
-    //   passwordController.text.trim(),
-    // );
+    final response = await AuthService.registerUser(
+      nameController.text.trim(),
+      emailController.text.trim(),
+      passwordController.text.trim(),
+    );
 
-    // print('Resposta da API: $response');
+    print('Resposta da API: $response');
 
     isLoading = false;
     onUpdate();
