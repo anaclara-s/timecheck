@@ -20,7 +20,11 @@ class RegisterController {
     if (names.length >= 2) {
       final first = names.first.toLowerCase();
       final last = names.last.toLowerCase();
-      generatedUsername = '$first.$last';
+      if (first == last) {
+        generatedUsername = '';
+      } else {
+        generatedUsername = '$first.$last';
+      }
     } else {
       generatedUsername = '';
     }
@@ -83,10 +87,40 @@ class RegisterController {
       passwordController.text.trim(),
     );
 
-    print('Resposta da API: $response');
+    // print('Resposta da API: $response');
 
-    isLoading = false;
-    onUpdate();
+    if (response['sucess'] == false) {
+      String message = response['mensage'] ?? 'Erro desconhecido';
+
+      await showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          title: const Text('Erro no cadastro'),
+          content: Text(message),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+
+      isLoading = false;
+      onUpdate();
+      return;
+    }
+
+    //teste
+    // final response = {
+    //   'success': true,
+    //   'message': 'Cadastro simulado com sucesso',
+    // };
+
+    // print('Simulação de cadastro: $response');
+
+    // isLoading = false;
+    // onUpdate();
 
     await showDialog(
       context: context,

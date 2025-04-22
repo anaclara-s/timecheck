@@ -33,8 +33,16 @@ class _RegisterPageState extends State<RegisterPage> {
                 controller: controller.nameController,
                 prefixIcon: const Icon(Icons.person_outline_sharp),
                 hintText: 'Digite seu nome completo',
-                validator: (value) =>
-                    value!.isEmpty ? 'Informe seu nome' : null,
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return 'Informe seu nome';
+                  }
+                  final parts = value.trim().split(' ');
+                  if (parts.length < 2) {
+                    return 'Informe nome e sobrenome';
+                  }
+                  return null;
+                },
                 onChanged: (value) {
                   setState(() {
                     controller.generateUsername(value);
