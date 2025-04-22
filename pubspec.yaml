@@ -76,17 +76,17 @@ flutter:
     - assets/images/timecheck_logo.png
     - assets/images/timecheck_icon.png
     - assets/images/git/print_home_dark.jpg
-    - assets/images/git/print_home_ligth.jpg
+    - assets/images/git/print_home_light.jpg
     - assets/images/git/print_inicio_dark.jpg
-    - assets/images/git/print_inicio_ligth.jpg
+    - assets/images/git/print_inicio_light.jpg
     - assets/images/git/print_login_dark.jpg
-    - assets/images/git/print_login_ligth.jpg
+    - assets/images/git/print_login_light.jpg
     - assets/images/git/print_mensagem_dark.jpg
-    - assets/images/git/print_mensagem_ligth.jpg
+    - assets/images/git/print_mensagem_light.jpg
     - assets/images/git/print_registro_dark.jpg
-    - assets/images/git/print_registro_ligth.jpg
+    - assets/images/git/print_registro_light.jpg
     - assets/images/git/print_registros_dark.jpg
-    - assets/images/git/print_registros_ligth.jpg
+    - assets/images/git/print_registros_light.jpg
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/to/asset-from-package
 
