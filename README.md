@@ -10,13 +10,34 @@
 
 ---
 
+## Tecnologias usadas
+
+| Camada | Tecnologia |
+|--------|------------|
+| Front-end | Flutter (Dart) |
+| Back-end | Node.js |
+| Banco de Dados | PostgreSQL |
+| Hospedagem | Render (API + DB online) |
+
+---
+
 ## Funcionalidades
 
-- Registro de ponto com um clique (entrada, intervalo e saída)
+- Registro de ponto com um clique (entrada, intervalos e saída)
 - Visualização de registros anteriores
-- Edição de pontos incorretos
 - Suporte a modo claro e escuro
 - Backend 100% funcional e hospedado online
+  
+---
+
+## APK
+
+O app está pronto para uso!  
+- APK testado e estável.
+- Compatível com Android.
+
+> **[Baixe aqui a versão mais recente do APK](https://github.com/anaclara-s/timecheck/releases/download/v1.0.0/timecheck.apk)**
+
 ---
 
 ## Interface do App
@@ -49,15 +70,3 @@
 | Dark Mode | Light Mode |
 |----------|------------|
 | ![](assets/images/git/print_relatorio_dark.jpg) | ![](assets/images/git/print_relatorio_light.jpg) |
-
----
-## 🛠️ Tecnologias
-
-| Camada | Tecnologia |
-|--------|------------|
-| Front-end | Flutter (Dart) |
-| Back-end | Node.js |
-| Banco de Dados | PostgreSQL |
-| Hospedagem | Render (API + DB online) |
-
----
