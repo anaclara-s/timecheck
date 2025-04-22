@@ -47,7 +47,7 @@ class _CustomElevatedButtonWidgetState
               : Text(
                   widget.text,
                   style: const TextStyle(
-                    color: kLigthTextColors,
+                    color: klightTextColors,
                     fontSize: kSizeTexts,
                   ),
                 ),

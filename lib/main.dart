@@ -20,11 +20,11 @@ void main() async {
         '/register': (context) => const RegisterPage(),
       },
       theme: ThemeData.light().copyWith(
-        scaffoldBackgroundColor: kLigthBackgroundColorPages,
+        scaffoldBackgroundColor: klightBackgroundColorPages,
         elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
-                backgroundColor: kElevatedButtonLigthBackgroundColor,
-                foregroundColor: kElevatedForegroundLigthBackgroundColor)),
+                backgroundColor: kElevatedButtonlightBackgroundColor,
+                foregroundColor: kElevatedForegroundlightBackgroundColor)),
         appBarTheme:
             const AppBarTheme(iconTheme: IconThemeData(color: Colors.white)),
       ),

@@ -20,7 +20,7 @@ class CustomAppbarWidget extends StatelessWidget
       title: Text(
         text,
         style: const TextStyle(
-          color: kLigthTextColors,
+          color: klightTextColors,
           fontSize: kSizeTexts,
           fontWeight: FontWeight.bold,
         ),

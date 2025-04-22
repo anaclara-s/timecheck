@@ -11,7 +11,7 @@ class WelcomePage extends StatelessWidget {
 
     final gradientColors = isDark
         ? [kGradientDart0, kGradientDart1]
-        : [kGradientLigth0, kGradientLigth1];
+        : [kGradientlight0, kGradientlight1];
 
     return Scaffold(
       body: Container(
